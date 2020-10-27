@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 }
 
 private fun isPrimeNo(number: Long): Long {
-    val range = 1.toLong()..number / 2.toLong()
+    val range = 2.toLong()..number / 2.toLong()
     var divisorCount: Long = 0
     for (i in range) {
         if (number.rem(i) == 0.toLong()) {
