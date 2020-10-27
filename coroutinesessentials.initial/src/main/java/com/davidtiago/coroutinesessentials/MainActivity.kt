@@ -23,14 +23,16 @@ class MainActivity : AppCompatActivity() {
             if (count > 0) {
                 binding.textView.text = "$number \n is a prime number 👍"
             } else {
-                binding.textView.text = "$number \n is NOT a prime number 👎 \n can be divided by $count numbers"
+                binding.textView.text =
+                    "$number \n is NOT a prime number 👎 \n can be divided by $count numbers"
             }
             binding.progress.hide()
         }
     }
+
 }
 
-fun isPrimeNo(number: Long): Long {
+private fun isPrimeNo(number: Long): Long {
     val range = 1.toLong()..number / 2.toLong()
     var divisorCount: Long = 0
     for (i in range) {
@@ -41,3 +43,4 @@ fun isPrimeNo(number: Long): Long {
     }
     return divisorCount
 }
+
