@@ -1,2 +1,3 @@
 rootProject.name = "Coroutines Essentials"
-include ':app'
+include ':coroutinesessentials.initial'
+include ':coroutinesessentials.final'
