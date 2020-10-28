@@ -57,3 +57,8 @@ W
 ^coroutinesessentials.initial/src/main/java/com/davidtiago/coroutinesessentials/MainActivity.kt,c/a/ca942796a1175d5d3fe28cc8a80a0e1b0761b583
 å
 \coroutinesessentials.final/src/main/java/com/davidtiago/coroutinesessentials/MainActivity.kt,a/8/a8f180107f101a3215852722f59f90f45de30f2b
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+ê
+`coroutinesessentials.final/src/main/java/com/davidtiago/coroutinesessentials/ComputationCache.kt,c/d/cd98ccd4cb29547c85ea3081f544cf52fc979671

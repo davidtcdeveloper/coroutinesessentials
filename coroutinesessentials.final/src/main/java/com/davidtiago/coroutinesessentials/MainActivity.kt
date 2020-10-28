@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                 val number = binding.editTextNumber.text.toString().toLong()
                 val count = isPrimeNo(number)
                 withContext(Dispatchers.Main) {
-                    if (count > 0) {
+                    if (count == 0.toLong()) {
                         binding.textView.text = "$number \n is a prime number 👍"
                     } else {
                         binding.textView.text =
@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         var divisorCount: Long = 0
         val cacheForNumber = cache.forNumber(number)
         cacheForNumber?.let {
+            Log.d("isPrimeNo", "Returning cached value")
             return@withContext cacheForNumber
         }
         for (i in range) {
