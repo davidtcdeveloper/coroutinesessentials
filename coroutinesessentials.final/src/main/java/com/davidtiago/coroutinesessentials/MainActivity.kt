@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
                             "$number \n is NOT a prime number 👎 \n can be divided by $count numbers"
                     }
                     binding.computeButton.visibility = View.VISIBLE
+                    binding.cancelButton.visibility = View.GONE
                     binding.progress.hide()
                 }
             }
