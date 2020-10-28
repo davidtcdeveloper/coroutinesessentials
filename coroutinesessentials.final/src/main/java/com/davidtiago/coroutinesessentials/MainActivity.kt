@@ -8,6 +8,8 @@ import com.davidtiago.coroutinesessentials.databinding.ActivityMainBinding
 import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
+    private val cache = ComputationCache()
+
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var scope: CoroutineScope
@@ -46,20 +48,24 @@ class MainActivity : AppCompatActivity() {
         super.onStop()
         scope.cancel()
     }
-}
 
-private suspend fun isPrimeNo(number: Long): Long = withContext(Dispatchers.Default) {
-    val range = 2.toLong()..number / 2.toLong()
-    var divisorCount: Long = 0
-    for (i in range) {
-        yield()
-        if (number.rem(i) == 0.toLong()) {
-            Log.d("isPrimeNo", "Can be divided by $i")
-            divisorCount += 1
-        } else {
-            Log.d("isPrimeNo", "Can't be divided by $i")
+    private suspend fun isPrimeNo(number: Long): Long = withContext(Dispatchers.Default) {
+        val range = 2.toLong()..number / 2.toLong()
+        var divisorCount: Long = 0
+        val cacheForNumber = cache.forNumber(number)
+        cacheForNumber?.let {
+            return@withContext cacheForNumber
         }
+        for (i in range) {
+            yield()
+            if (number.rem(i) == 0.toLong()) {
+                Log.d("isPrimeNo", "Can be divided by $i")
+                divisorCount += 1
+            } else {
+                Log.d("isPrimeNo", "Can't be divided by $i")
+            }
+        }
+        cache.computationCompleted(number, divisorCount)
+        return@withContext divisorCount
     }
-    return@withContext divisorCount
 }
-
