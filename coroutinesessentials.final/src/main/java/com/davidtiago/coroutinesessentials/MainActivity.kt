@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                         binding.textView.text = "$number \n is a prime number 👍"
                     } else {
                         binding.textView.text =
-                            "$number \n is NOT a prime number 👎 \n can be divided by $count numbers"
+                            "$number \n is NOT a prime number 👎 \n can be divided by $count other numbers"
                     }
                     binding.computeButton.visibility = View.VISIBLE
                     binding.cancelButton.visibility = View.GONE
