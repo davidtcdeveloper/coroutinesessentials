@@ -3,6 +3,7 @@ package com.davidtiago.coroutinesessentials
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.davidtiago.coroutinesessentials.databinding.ActivityMainBinding
 import kotlinx.coroutines.*
@@ -20,9 +21,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.progress.hide()
-        binding.button.setOnClickListener {
-            binding.textView.text = ""
-            binding.progress.show()
+        binding.cancelButton.visibility = View.GONE
+        binding.computeButton.setOnClickListener {
+            with(binding) {
+                textView.text = ""
+                progress.show()
+                computeButton.visibility = View.GONE
+                cancelButton.visibility = View.VISIBLE
+            }
             scope.launch {
                 val number = binding.editTextNumber.text.toString().toLong()
                 val count = isPrimeNo(number)
@@ -33,8 +39,19 @@ class MainActivity : AppCompatActivity() {
                         binding.textView.text =
                             "$number \n is NOT a prime number 👎 \n can be divided by $count numbers"
                     }
+                    binding.computeButton.visibility = View.VISIBLE
                     binding.progress.hide()
                 }
+            }
+        }
+        binding.cancelButton.setOnClickListener {
+            scope.cancel()
+            scope = CoroutineScope(Job())
+            with(binding) {
+                progress.hide()
+                textView.text = "Computation cancelled"
+                computeButton.visibility = View.VISIBLE
+                cancelButton.visibility = View.GONE
             }
         }
     }
